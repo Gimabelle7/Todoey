@@ -6,11 +6,12 @@
 //
 
 import UIKit
-import RealmSwift
+//import RealmSwift
 import SwipeCellKit
 
-class SwipeTableViewController: UITableViewController {
-
+class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegate {
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 80.0
@@ -27,6 +28,7 @@ class SwipeTableViewController: UITableViewController {
         return cell
     }
     
+
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
@@ -52,6 +54,7 @@ class SwipeTableViewController: UITableViewController {
     
     func updateModel(at indexPath: IndexPath) {
         // Update our data model
+        print("item delete")
     }
     
     

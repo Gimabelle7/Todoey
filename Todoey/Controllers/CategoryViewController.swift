@@ -9,10 +9,10 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: SwipeTableViewController {
 
     
-    let realm = try! Realm()
+    let realm = try! Realm() // inicializar un nuevo Realm
     
     // Potential namespace clash with OpaquePointer (same name of Category)
     // Use correct type from dropdown or add backticks to fix e.g., var categories = [`Category`]()
@@ -33,7 +33,7 @@ class CategoryViewController: UITableViewController {
     
     //MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories?.count ?? 1
+        return categories?.count ?? 1 // esto se llama operador de fusion nula 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +69,8 @@ class CategoryViewController: UITableViewController {
     }
     
     //MARK: - Delete Data from Swipe
-    override func updateModel(at indexPath: IndexPath) {
+    
+    override func updateModel (at indexPath: IndexPath) {
         if let categoryForDeletion = self.categories?[indexPath.row] {
             do {
                 try self.realm.write {
@@ -85,11 +86,14 @@ class CategoryViewController: UITableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
+        
         let alert = UIAlertController(title: "Add a New Cateogry", message: "", preferredStyle: .alert)
+        
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             let newCategory = Category()
             newCategory.name = textField.text!
             newCategory.colour = UIColor.randomFlat().hexValue()
+        
             self.save(category: newCategory)
         }
         
@@ -108,7 +112,9 @@ class CategoryViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TodoListViewController
+        
         if let indexPath = tableView.indexPathForSelectedRow { //
+            
             destinationVC.selectedCategory = categories?[indexPath.row]
         }
     }
