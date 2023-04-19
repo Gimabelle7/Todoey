@@ -124,7 +124,6 @@
 				B55558C5C0088BCA67FF219E /* Pods-Todoey.debug.xcconfig */,
 				E9DE4E4E569859C10AF78937 /* Pods-Todoey.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

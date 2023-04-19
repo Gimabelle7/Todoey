@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Todoey-->
+        <!--Items-->
         <scene sceneID="Xgd-dZ-dxJ">
             <objects>
                 <tableViewController id="qqI-ht-Q7h" customClass="TodoListViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,9 +15,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" id="D37-9v-Qv2">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="qqI-ht-Q7h" id="hxb-Wc-U5u"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Gvi-nZ-Ydb">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="94" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gvi-nZ-Ydb" id="zEq-9d-zM1">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
@@ -30,7 +38,7 @@
                             <outlet property="delegate" destination="qqI-ht-Q7h" id="mni-gZ-jRS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todoey" id="Td6-gU-kq8">
+                    <navigationItem key="navigationItem" title="Items" id="Td6-gU-kq8">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wJg-Uy-e7h">
                             <connections>
                                 <action selector="addButtonPressed:" destination="qqI-ht-Q7h" id="Qa9-1n-bY9"/>
@@ -40,12 +48,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qir-Ec-IsS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="781" y="58"/>
+            <point key="canvasLocation" x="1457" y="58"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Todoey-->
         <scene sceneID="S7X-z0-x3P">
             <objects>
-                <tableViewController id="Eff-EF-a0N" sceneMemberID="viewController">
+                <tableViewController id="Eff-EF-a0N" customClass="CategoryViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="gmh-6M-wzA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -65,10 +73,20 @@
                             <outlet property="delegate" destination="Eff-EF-a0N" id="2h7-rb-xAn"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Todoey" id="e1a-SO-MoI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vfO-L6-NL5">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="Eff-EF-a0N" id="gON-PS-CuC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="qqI-ht-Q7h" kind="show" identifier="goToItems" id="bYW-b9-3rx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAx-dh-cGm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541" y="58"/>
+            <point key="canvasLocation" x="752" y="58"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xEx-3b-SWb">
@@ -82,7 +100,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="qqI-ht-Q7h" kind="relationship" relationship="rootViewController" id="Zit-ac-a8k"/>
+                        <segue destination="Eff-EF-a0N" kind="relationship" relationship="rootViewController" id="x7k-u5-uYV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoC-rc-iQV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+import ChameleonFramework
 
 class TodoListViewController: UITableViewController {
 
@@ -131,11 +133,12 @@ class TodoListViewController: UITableViewController {
 extension TodoListViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        toDoItems = toDoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
+        toDoItems = toDoItems?.filter("title CONTAINS[cd] %@",//Como se deben buscar o filtrar los datos
+       searchBar.text!).sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { // esto es para cuando agreguemos texto y borremos vuelva a la lista original
         if searchBar.text?.count == 0 {
             loadItems()
             DispatchQueue.main.async {
